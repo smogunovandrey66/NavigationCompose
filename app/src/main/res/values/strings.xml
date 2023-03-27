@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Navigation Compose</string>
+    <string name="need_popup">Need PopUp</string>
+    <string name="popup_to">PopUpTo</string>
+    <string name="inclusive">Inclusive</string>
+    <string name="save_state">Save State</string>
+    <string name="restore_state">Restore State</string>
+    <string name="launch_single_top">Launch Single Top</string>
+    <string name="navigate_to">Navigate to</string>
 </resources>
