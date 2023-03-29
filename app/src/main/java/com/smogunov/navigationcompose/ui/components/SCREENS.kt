@@ -23,9 +23,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.smogunov.navigationcompose.R
+import com.smogunov.navigationcompose.ui.theme.Typography
 
 enum class SCREENS {
     HOME(),
@@ -35,36 +39,27 @@ enum class SCREENS {
 
 @Composable
 fun Screen(screen: String, modifier: Modifier = Modifier, navController: NavController) {
-    Column(modifier = modifier
-        .fillMaxWidth()
-        .border(1.dp, Color.Green),
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .border(1.dp, Color.Green),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = screen)
-        Divider()
-        val screens = SCREENS.values().map { it.name }
-        var nextScreen by remember {
-            mutableStateOf(screens.first())
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        //For check saveState and restoreState
+        var fontSize by remember {
+            mutableStateOf(Typography.bodyLarge.fontSize.value)
         }
-        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth()) {
-            Text(stringResource(R.string.navigate_to), Modifier.padding(5.dp))
-            ComboBox(items = screens) { selected ->
-                nextScreen = selected
-            }
+        Text(text = screen, fontSize = fontSize.sp)
+        Text(text = "fontSize=$fontSize")
+        Button(onClick = { fontSize += 10.0f }) {
+            Text(text = "Increse fontsize")
         }
-        Row(horizontalArrangement = Arrangement.Center, modifier = Modifier
-            .padding(10.dp)
-            .fillMaxWidth()) {
-            Button(onClick = {}) {
-                Text(text = stringResource(id = R.string.back))
-            }
-            Button(onClick = {navController.navigate(nextScreen){
 
-            } }) {
-                Text(text = stringResource(id = R.string.navigate_to))
-            }
+        //For check saveState and restoreState
+        var checked by remember {
+            mutableStateOf(false)
         }
+        CheckBoxText(checked, stringResource(id = R.string.checked), {checked = it})
     }
 }

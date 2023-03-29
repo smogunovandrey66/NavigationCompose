@@ -9,4 +9,6 @@
     <string name="navigate_to">Navigate to</string>
     <string name="pop_back_stack">PopBackStack</string>
     <string name="back">Back</string>
+    <string name="navBackStackEntries">NavBackStackEntries</string>
+    <string name="checked">Checked</string>
 </resources>
